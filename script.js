@@ -1,5 +1,8 @@
 // declare and define variables that refer to HTML elements
-
+let btn = document.querySelector(".startBtn");
+let time = document.querySelector(".time");
+let score = document.querySelector(".score");
+let test = document.querySelector('.test');
 
 // running time of the timer (during an iteration when the value changes)
 // necessary for countdown functionality
@@ -25,7 +28,23 @@ let list = ["the","quick","brown","fox","jumps","over","the","lazy","dog"];
  * 
  */
 
+function countdown() {
+    let timer = setInterval(function(){
+        seconds -= 1;
+        time.innerHTML = seconds;
+        if (seconds <= 0){
+            alert("Game is over. You got " + points);
+            score.innerHTML = "0";
+            test.innerHTML = "";
+            time.innerHTML = "60";
+            game_active = false;
+            clearInterval(timer);
+            seconds = 60;
+            points = 0;
+        }
+    }, 1000);
 
+}
 
 
 
@@ -37,7 +56,19 @@ let list = ["the","quick","brown","fox","jumps","over","the","lazy","dog"];
  * 
  */
 
-
+function random_word() {
+    let random = Math.floor(Math.random() * list.length);
+    let word = list[random].split("");
+    test.innerHTML = "";
+    for(let i = 0; i< word.length; i ++){
+        let span = document.createElement("span");
+        span.classList.add("span");
+        span.innerHTML = word[i];
+        test.appendChild(span);
+        
+    }
+    spans = document.querySelectorAll(".span");
+}
 
 
 
